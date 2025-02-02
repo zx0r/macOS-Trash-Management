@@ -136,19 +136,6 @@ add_to_path() {
     log "trash-cli is already in PATH."
   fi
 }
-  # Handle subcommands using main completion
-  local subcommands=("trash-empty" "trash-list" "trash-restore" "trash-put")
-  for subcmd in "${subcommands[@]}"; do
-    # Fish requires separate files
-    if [[ -f "${completion_dirs[fish]}/trash.fish" ]]; then
-      ln -sf "trash.fish" "${completion_dirs[fish]}/${subcmd}.fish"
-    fi
-
-    # Bash/Zsh use same completion
-    ln -sf "trash" "${completion_dirs[bash]}/${subcmd}" 2>/dev/null
-    ln -sf "_trash" "${completion_dirs[zsh]}/_${subcmd}" 2>/dev/null
-  done
-}
 
 # 🔄 Redirect trash-cli to Finder’s Trash
 configure_finder_trash() {
