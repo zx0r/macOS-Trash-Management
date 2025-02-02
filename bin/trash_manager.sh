@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -e  # Exit on errors
+[[ $- == *i* ]] || exec bash -i "$0" "$@"
+
 # trash-manager.sh - Comprehensive trash-cli management script for macOS
 # Maintainer: zx0r
 # Version: 1.0.0
@@ -12,8 +15,6 @@
 # - Sets up shell completions (Bash, Zsh, Fish)
 # - Integrates Trash-CLI with Finder's Trash
 # - Reloads the shell configuration to apply changes
-
-set -e # Exit on error
 
 # 🎨 Colors
 RED='\033[0;31m'
