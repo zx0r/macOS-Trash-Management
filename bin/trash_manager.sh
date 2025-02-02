@@ -204,29 +204,5 @@ uninstall_trash_cli() {
   success "Uninstallation completed successfully"
 }
 
-# 📌 Show help instructions
-show_help() {
-  # Restore cursor position
-  tput clear
-  echo -ne "\033[H"
-
-  echo -e "${GREEN}Trash-CLI Setup Script${NC}"
-  echo -e "\n${YELLOW}[Options:]${NC}"
-  echo -e "${YELLOW}--install    Install and configure trash-cli${NC}"
-  echo -e "${YELLOW}--empty      Permanently delete files from trash${NC}"
-  echo -e "${YELLOW}--uninstall  Uinstall trash-cli${NC}"
-  echo -e "${YELLOW}--help       Show this help message${NC}"
-  echo -e "\n${BLUE} Usage: ./trash_manager.sh --help${NC}"
-}
-
-# 🏁 Argument Handling
-case "$1" in
---install) setup_trash ;;
---empty) empty_trash ;;
---uninstall) uninstall_trash_cli ;;
---help) show_help ;;
-*)
-  warn "Invalid option! Use '--help' for usage instructions."
-  exit 1
-  ;;
-esac
+# Run
+setup_trash
