@@ -91,18 +91,15 @@ alias trempty='trash-empty'
 alias trrestore='trash-restore'
 alias trrm='trash-rm'
 "
-  read -rp "Do you want add aliases 'rm' for safety? (y/N): " choice
-  if [[ "$choice" =~ ^[Yy]$ ]]; then
-
-    # Check if aliases already exist in config file before adding
-    if ! grep -q "alias rm='trash-put'" "$CONFIG_FILE"; then
-      log "Adding Trash-CLI aliases to $CONFIG_FILE..."
-      echo "$alias_block" >>"$CONFIG_FILE"
-      success "Aliases added for safer file deletion!"
-    else
-      log "Aliases already set up."
-    fi
+  # Check if aliases already exist in config file before adding
+  if ! grep -q "alias rm='trash-put'" "$CONFIG_FILE"; then
+    log "Adding Trash-CLI aliases to $CONFIG_FILE..."
+    echo "$alias_block" >>"$CONFIG_FILE"
+    success "Aliases added for safer file deletion!"
+  else
+    log "Aliases already set up."
   fi
+
 }
 
 # 🔗 Ensure trash-cli is in PATH
@@ -204,5 +201,29 @@ uninstall_trash_cli() {
   success "Uninstallation completed successfully"
 }
 
-# Run
-setup_trash
+# 📌 Show help instructions
+show_help() {
+  # Restore cursor position
+  tput clear
+  echo -ne "\033[H"
+
+  echo -e "${GREEN}Trash-CLI Setup Script${NC}"
+  echo -e "\n${YELLOW}[Options:]${NC}"
+  echo -e "${YELLOW}--install    Install and configure trash-cli${NC}"
+  echo -e "${YELLOW}--empty      Permanently delete files from trash${NC}"
+  echo -e "${YELLOW}--uninstall  Uinstall trash-cli${NC}"
+  echo -e "${YELLOW}--help       Show this help message${NC}"
+  echo -e "\n${BLUE} Usage: ./trash_manager.sh --help${NC}"
+}
+
+# 🏁 Argument Handling
+case "$1" in
+--install) setup_trash ;;
+--empty) empty_trash ;;
+--uninstall) uninstall_trash_cli ;;
+--help) show_help ;;
+*)
+  warn "Invalid option! Use '--help' for usage instructions."
+  exit 1
+  ;;
+esac
