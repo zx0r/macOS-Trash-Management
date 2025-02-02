@@ -96,7 +96,7 @@ end
 
 mkdir -p $HOME/.local/share/Trash
 rm -rfi $HOME/.local/share/Trash/files
-ln -s $HOME/.Trash ~/.local/share/Trash/files
+ln -s $HOME/.Trash $HOME/.local/share/Trash/files
 
 # Now `trash-cli` will move deleted files to Finder’s Trash
 ```
@@ -107,7 +107,6 @@ user $ which trash
 
 user $ which trash-put
 /usr/local/opt/trash-cli/libexec/bin/trash-put
-
 
 user $ ls -l ~/.local/share/Trash/files
 lrwx------  1 x0r  staff  17 Feb  2 20:05 /Users/x0r/.local/share/Trash/files -> /Users/zx0r/.Trash
@@ -137,24 +136,24 @@ for cmd in ${cmds[@]}; do
 done
 
 autoload -U compinit && compinit
-ln -s /usr/local/share/zsh/site-functions/_trash ~/.zsh/completions/_trash
+ln -s /usr/local/share/zsh/site-functions/_trash $HOME/.zsh/completions/_trash
 
 # Fish Shell
-ln -s /usr/local/share/fish/completions/trash.fish ~/.config/fish/completions/
+ln -s /usr/local/share/fish/completions/trash.fish $HOME/.config/fish/completions/
 ```
 
 ⚡ Usage
 
 🖥️ trash (macOS-native Trash Management)
 ```sh
-trash-put </parh/to/file>          # Moves file.txt to Finder Trash (~/.Trash)
+trash-put </parh/to/file>   # Moves file.txt to Finder Trash (~/.Trash)
 ```
 🗃️ trash-cli (Advanced Trash Management)
 ```sh
-trash-put <file>        # Move file to ~/.local/share/Trash/files
-trash-list              # List trashed files
-trash-restore <file>    # Restore a trashed file
-trash-empty             # Permanently delete trashed files
+trash-put <file>           # Move file to ~/.local/share/Trash/files
+trash-list                 # List trashed files
+trash-restore <file>       # Restore a trashed file
+trash-empty                # Permanently delete trashed files
 ```
 
 ## 🛠️ Debugging.     
@@ -186,7 +185,6 @@ user $ ll $HOME/.local/share/Trash/files
 user $ ls -l $HOME/.Trash/
 total 160
 -rw-r--r--  1 zx0r   staff   0 Feb  2 16:27 testfile
-
 user $ ls -la /usr/local/opt/trash-cli/libexec/bin/
 total 48
 drwx------  11 x0r  admin  352 Feb  2 20:01 .
@@ -201,7 +199,6 @@ lrwx------   1 x0r  admin   45 May 26  2024 python3.13 -> ../../../../../opt/pyt
 -rwx------   1 x0r  admin  173 Feb  2 20:01 trash-restore
 -rwx------   1 x0r  admin  168 Feb  2 20:01 trash-rm
 ```
-
 
 ## 🏁 Conclusion
 
