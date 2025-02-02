@@ -69,21 +69,22 @@ alias trrm='trash-rm'
 
 # Integrates Trash-CLI with Finder's Trash
 export TRASHDIR=$HOME/.Trash
-echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> ~/.bashrc  # For Bash
-echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> ~/.zshrc   # For Zsh
+echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> $HOME/.bashrc  # For Bash
+echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> $HOME/.zshrc   # For Zsh
 
 # Reload config
 source ~/.zshrc
 
 set -gx TRASHDIR "$HOME/.Trash"
-echo 'fish_add_path (brew --prefix)/opt/trash/libexec/bin' >> ~/.config/fish/config.fish  # For Fish
+echo 'fish_add_path (brew --prefix)/opt/trash/libexec/bin' >> $HOME/.config/fish/config.fish  # For Fish
 
 # Reload config
 source ~/.config/fish/config.fish
 
-# Optional
+# Optional for bash/zsh
 alias trash="trash-put --trash-dir=$HOME/.Trash"
 
+# Optional for fish
 function trash
     command trash-put --trash-dir=$HOME/.Trash $argv
 end
