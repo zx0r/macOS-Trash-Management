@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e  # Exit on errors
-[[ $- == *i* ]] || exec bash -i "$0" "$@"
 
 # trash-manager.sh - Comprehensive trash-cli management script for macOS
 # Maintainer: zx0r
