@@ -38,7 +38,7 @@ Why Not Use rm?
 
 🕹 Automated installation
 ```sh
-curl -fsSL https://raw.githubusercontent.com/zx0r/macOS-Trash-Management/refs/heads/main/bin/trash_manager.sh | bash -s -- --install
+bash <(curl -fsSL https://raw.githubusercontent.com/zx0r/macOS-Trash-Management/refs/heads/main/bin/trash_manager.sh) 
 ```
 ```sh
 # 📌 trash-manager.sh Installs and configures Trash-CLI for macOS
