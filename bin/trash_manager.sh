@@ -37,21 +37,6 @@ error() {
   exit 1
 }
 
-# 🚀 Full setup function
-setup_trash() {
-  log "🚀 Starting Trash-CLI setup..."
-
-  is_macos               # Validate macOS environment
-  is_installed           # Check if Trash-CLI is already installed
-  install_trash_cli      # Install Trash-CLI using Homebrew
-  add_aliases            # Add common aliases (rm -> trash-put, etc.)
-  add_to_path            # Ensure Trash-CLI is in the user's PATH
-  configure_finder_trash # Redirect Trash-CLI to Finder’s Trash
-  reload_shell_config    # Reload shell configuration for changes to take effect
-
-  success "\n🎉 Trash-CLI setup complete! Try using: 'trash-put <file>' and 'trash-list'"
-}
-
 # 🚀 Ensure Homebrew is installed
 is_installed() {
   if ! command -v brew &>/dev/null; then
@@ -217,6 +202,21 @@ show_help() {
   echo -e "${YELLOW}--uninstall  Uinstall trash-cli${NC}"
   echo -e "${YELLOW}--help       Show this help message${NC}"
   echo -e "\n${BLUE} Usage: ./trash_manager.sh --help${NC}"
+}
+
+# 🚀 Full setup function
+setup_trash() {
+  log "🚀 Starting Trash-CLI setup..."
+
+  is_macos               # Validate macOS environment
+  is_installed           # Check if Trash-CLI is already installed
+  install_trash_cli      # Install Trash-CLI using Homebrew
+  add_aliases            # Add common aliases (rm -> trash-put, etc.)
+  add_to_path            # Ensure Trash-CLI is in the user's PATH
+  configure_finder_trash # Redirect Trash-CLI to Finder’s Trash
+  reload_shell_config    # Reload shell configuration for changes to take effect
+
+  success "\n🎉 Trash-CLI setup complete! Try using: 'trash-put <file>' and 'trash-list'"
 }
 
 # 🏁 Argument Handling
