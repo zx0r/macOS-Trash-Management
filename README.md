@@ -54,7 +54,7 @@ curl -fsSL https://raw.githubusercontent.com/zx0r/macOS-Trash-Management/refs/he
 1️⃣ Install via Homebrew
 
 ```sh
-brew install trash-cli
+user $ brew install trash-cli
 ```
 
 2️⃣ Add to PATH 
@@ -73,13 +73,14 @@ echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> $HOME/.bash
 echo 'export PATH="$(brew --prefix)/opt/trash/libexec/bin:$PATH"' >> $HOME/.zshrc   # For Zsh
 
 # Reload config
-source ~/.zshrc
+user $ source ~/.zshrc
 
+# for fish shell
 set -gx TRASHDIR "$HOME/.Trash"
 echo 'fish_add_path (brew --prefix)/opt/trash/libexec/bin' >> $HOME/.config/fish/config.fish  # For Fish
 
 # Reload config
-source ~/.config/fish/config.fish
+user $ source ~/.config/fish/config.fish
 
 # Optional for bash/zsh
 alias trash="trash-put --trash-dir=$HOME/.Trash"
@@ -95,9 +96,9 @@ end
 ```sh
 # This is an important point
 
-mkdir -p $HOME/.local/share/Trash
-rm -rfi $HOME/.local/share/Trash/files
-ln -s $HOME/.Trash $HOME/.local/share/Trash/files
+user $ mkdir -p $HOME/.local/share/Trash
+user $ rm -rfi $HOME/.local/share/Trash/files
+user $ ln -s $HOME/.Trash $HOME/.local/share/Trash/files
 
 # Now `trash-cli` will move deleted files to Finder’s Trash
 ```
@@ -136,25 +137,25 @@ for cmd in ${cmds[@]}; do
   $cmd --print-completion tcsh | sudo tee /etc/profile.d/$cmd.completion.csh
 done
 
-autoload -U compinit && compinit
-ln -s /usr/local/share/zsh/site-functions/_trash $HOME/.zsh/completions/_trash
+user $ autoload -U compinit && compinit
+user $ ln -s /usr/local/share/zsh/site-functions/_trash $HOME/.zsh/completions/_trash
 
 # Fish Shell
-ln -s /usr/local/share/fish/completions/trash.fish $HOME/.config/fish/completions/
+user $ ln -s /usr/local/share/fish/completions/trash.fish $HOME/.config/fish/completions/
 ```
 
 ⚡ Usage
 
 🖥️ trash (macOS-native Trash Management)
 ```sh
-trash-put </parh/to/file>   # Moves file.txt to Finder Trash (~/.Trash)
+user $ trash-put </parh/to/file>   # Moves file.txt to Finder Trash (~/.Trash)
 ```
 🗃️ trash-cli (Advanced Trash Management)
 ```sh
-trash-put <file>           # Move file to ~/.local/share/Trash/files
-trash-list                 # List trashed files
-trash-restore <file>       # Restore a trashed file
-trash-empty                # Permanently delete trashed files
+user $ trash-put <file>           # Move file to ~/.local/share/Trash/files
+user $ trash-list                 # List trashed files
+user $ trash-restore <file>       # Restore a trashed file
+user $ trash-empty                # Permanently delete trashed files
 ```
 
 ## 🛠️ Debugging.     
@@ -166,9 +167,9 @@ If `trash-cli` isn’t working correctly, check the installation paths:
 # Since trash-cli does not natively use Finder’s Trash, you can redirect it with a symlink.
 
 # Force trash-cli to use Finder’s Trash
-mkdir -p $HOME/.local/share/Trash
-rm -rf $HOME/.local/share/Trash/files
-ln -s $HOME/.Trash ~/.local/share/Trash/files
+user $ mkdir -p $HOME/.local/share/Trash
+user $ rm -rf $HOME/.local/share/Trash/files
+user $ ln -s $HOME/.Trash ~/.local/share/Trash/files
 
 user $ which trash
 /usr/local/opt/trash-cli/libexec/bin/trash
@@ -206,7 +207,5 @@ lrwx------   1 x0r  admin   45 May 26  2024 python3.13 -> ../../../../../opt/pyt
 Using trash-cli ensures safer file deletion by allowing users to restore accidentally deleted files, unlike the irreversible rm command. Whether you're a beginner or an advanced user, integrating trash-cli into your workflow can prevent accidental data loss while maintaining the convenience of command-line file management.
 
 ---
-
-
 
 ### 💡 Stay safe. Use `trash-cli`, not `rm`! Happy cleaning! 🧹
