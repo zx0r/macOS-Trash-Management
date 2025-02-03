@@ -41,7 +41,8 @@ Why Not Use rm?
 curl -fsSL https://raw.githubusercontent.com/zx0r/macOS-Trash-Management/refs/heads/main/bin/trash_manager.sh | bash -s -- --install
 ```
 ```sh
-# 📌 trash-manager.sh Installs and configures Trash-CLI for macOS
+# - trash-manager.sh --install
+# - Installs and configures Trash-CLI for macOS
 # - Ensures Trash-CLI is installed
 # - Adds useful aliases for easier usage
 # - Configures the correct PATH for the shell
